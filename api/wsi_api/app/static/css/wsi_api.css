@@ -1,0 +1,8 @@
+html, body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+img {
+    border: 5px double #CCC;
+    width: 40%;
+}
