@@ -26,7 +26,7 @@ Development
 make dev_install
 
 # Start the server and go to http://127.0.0.1:8000/
-gunicorn wsi_api:app
+gunicorn wsi_api:app --reload
 
 ```
 Run `make` to see a list of other available options. Note that you _must_ be in a virtual environment to make (heh) most of those tasks work.
