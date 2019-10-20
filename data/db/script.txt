@@ -1,0 +1,16 @@
+-- Setup. DO NOT REMOVE.
+.headers on
+.separator ','
+
+DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS parameter;
+
+-- Tables
+
+CREATE TABLE country(AreaId INTEGER NOT NULL PRIMARY KEY, Area TEXT);
+CREATE TABLE parameter(VariableId INTEGER NOT NULL, Year INTEGER NOT NULL, AreaId INTEGER NOT NULL, VariableName TEXT, Value INTEGER, Area TEXT, PRIMARY KEY (VariableId, Year, AreaId), FOREIGN KEY (AreaId) REFERENCES country (AreaId));
+
+-- Import data
+
+.import ../table/countries.csv country
+.import ../table/single_table_data.csv parameter
