@@ -35,7 +35,8 @@ setup(
     keywords='flask webapp',
     install_requires=[
         'Flask',
-        'gunicorn'
+        'flask_cors',
+        'gunicorn',
     ],
     setup_requires=[
         'pytest-runner',
