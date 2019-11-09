@@ -21,7 +21,6 @@ yarn build
 ### Other Stuff
 
 * [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
-
 * [Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
 * [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+

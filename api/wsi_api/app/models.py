@@ -24,3 +24,38 @@ class Parameter(db.Model):
            'area': self.Area,
            'variablename': self.VariableName
        }
+
+
+class Country(db.Model):
+
+    __table_name__='country'
+
+    AreaId = db.Column(db.Integer, primary_key=True)
+    Area = db.Column(db.Text, index=False, unique=False, nullable=True)
+    Name = db.Column(db.Text, index=False, unique=False, nullable=True)
+
+    @property
+    def serialize(self):
+       """Return object data in easily serializable format"""
+       return {
+           'areaid': self.AreaId,
+           'area': self.Area,
+           'name': self.Name
+       }
+
+class Wsi(db.Model):
+
+    __table_name__='wsi'
+
+    AreaId = db.Column(db.Integer, primary_key=True)
+    Area = db.Column(db.Text, index=False, unique=False, nullable=True)
+    Name = db.Column(db.Text, index=False, unique=False, nullable=True)
+
+    @property
+    def serialize(self):
+       """Return object data in easily serializable format"""
+       return {
+           'areaid': self.AreaId,
+           'area': self.Area,
+           'name': self.Name
+       }
