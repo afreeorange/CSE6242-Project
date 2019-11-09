@@ -1,0 +1,201 @@
+AreaId,Area,Name
+1,Armenia,Armenia
+2,Afghanistan,Afghanistan
+3,Albania,Albania
+4,Algeria,Algeria
+6,Andorra,Andorra
+7,Angola,Angola
+8,Antigua and Barbuda,Antigua and Barb.
+9,Argentina,Argentina
+10,Australia,Australia
+11,Austria,Austria
+12,Bahamas,Bahamas
+13,Bahrain,Bahrain
+14,Barbados,Barbados
+16,Bangladesh,Bangladesh
+18,Bhutan,Bhutan
+19,Bolivia (Plurinational State of),Bolivia
+20,Botswana,Botswana
+21,Brazil,Brazil
+23,Belize,Belize
+25,Solomon Islands,Solomon Is.
+26,Brunei Darussalam,Brunei
+27,Bulgaria,Bulgaria
+28,Myanmar,Myanmar
+29,Burundi,Burundi
+32,Cameroon,Cameroon
+33,Canada,Canada
+35,Cabo Verde,Cabo Verde
+37,Central African Republic,Central African Rep.
+38,Sri Lanka,Sri Lanka
+39,Chad,Chad
+40,Chile,Chile
+44,Colombia,Colombia
+45,Comoros,Comoros
+46,Congo,Congo
+47,Cook Islands,Cook Is.
+48,Costa Rica,Costa Rica
+49,Cuba,Cuba
+50,Cyprus,Cyprus
+52,Azerbaijan,Azerbaijan
+53,Benin,Benin
+54,Denmark,Denmark
+55,Dominica,Dominica
+56,Dominican Republic,Dominican Rep.
+57,Belarus,Belarus
+58,Ecuador,Ecuador
+59,Egypt,Egypt
+60,El Salvador,El Salvador
+61,Equatorial Guinea,Eq. Guinea
+63,Estonia,Estonia
+64,Faroe Islands,Faeroe Is.
+66,Fiji,Fiji
+67,Finland,Finland
+68,France,France
+72,Djibouti,Djibouti
+73,Georgia,Georgia
+74,Gabon,Gabon
+75,Gambia,Gambia
+79,Germany,Germany
+80,Bosnia and Herzegovina,Bosnia and Herz.
+81,Ghana,Ghana
+83,Kiribati,Kiribati
+84,Greece,Greece
+86,Grenada,Grenada
+89,Guatemala,Guatemala
+90,Guinea,Guinea
+91,Guyana,Guyana
+93,Haiti,Haiti
+94,Holy See,
+95,Honduras,Honduras
+97,Hungary,Hungary
+98,Croatia,Croatia
+99,Iceland,Iceland
+100,India,India
+101,Indonesia,Indonesia
+102,Iran (Islamic Republic of),Iran
+103,Iraq,Iraq
+104,Ireland,Ireland
+105,Israel,Israel
+106,Italy,Italy
+107,Côte d'Ivoire,Côte d'Ivoire
+108,Kazakhstan,Kazakhstan
+109,Jamaica,Jamaica
+110,Japan,Japan
+112,Jordan,Jordan
+113,Kyrgyzstan,Kyrgyzstan
+114,Kenya,Kenya
+115,Cambodia,Cambodia
+116,Democratic People's Republic of Korea,North Korea
+117,Republic of Korea,South Korea
+118,Kuwait,Kuwait
+119,Latvia,Latvia
+120,Lao People's Democratic Republic,Laos
+121,Lebanon,Lebanon
+122,Lesotho,Lesotho
+123,Liberia,Liberia
+124,Libya,Libya
+125,Liechtenstein,Liechtenstein
+126,Lithuania,Lithuania
+127,Marshall Islands,Marshall Is.
+129,Madagascar,Madagascar
+130,Malawi,Malawi
+131,Malaysia,Malaysia
+132,Maldives,Maldives
+133,Mali,Mali
+134,Malta,Malta
+136,Mauritania,Mauritania
+137,Mauritius,Mauritius
+138,Mexico,Mexico
+140,Monaco,Monaco
+141,Mongolia,Mongolia
+143,Morocco,Morocco
+144,Mozambique,Mozambique
+145,Micronesia (Federated States of),Micronesia
+146,Republic of Moldova,Moldova
+147,Namibia,Namibia
+148,Nauru,Nauru
+149,Nepal,Nepal
+150,Netherlands,Netherlands
+154,North Macedonia,Macedonia
+155,Vanuatu,Vanuatu
+156,New Zealand,New Zealand
+157,Nicaragua,Nicaragua
+158,Niger,Niger
+159,Nigeria,Nigeria
+160,Niue,Niue
+162,Norway,Norway
+165,Pakistan,Pakistan
+166,Panama,Panama
+167,Czechia,Czechia
+168,Papua New Guinea,Papua New Guinea
+169,Paraguay,Paraguay
+170,Peru,Peru
+171,Philippines,Philippines
+173,Poland,Poland
+174,Portugal,Portugal
+175,Guinea-Bissau,Guinea-Bissau
+176,Timor-Leste,Timor-Leste
+177,Puerto Rico,Puerto Rico
+178,Eritrea,Eritrea
+179,Qatar,Qatar
+180,Palau,Palau
+181,Zimbabwe,Zimbabwe
+183,Romania,Romania
+184,Rwanda,Rwanda
+185,Russian Federation,Russia
+188,Saint Kitts and Nevis,St. Kitts and Nevis
+189,Saint Lucia,Saint Lucia
+191,Saint Vincent and the Grenadines,St. Vin. and Gren.
+192,San Marino,San Marino
+193,Sao Tome and Principe,
+194,Saudi Arabia,Saudi Arabia
+195,Senegal,Senegal
+196,Seychelles,Seychelles
+197,Sierra Leone,Sierra Leone
+198,Slovenia,Slovenia
+199,Slovakia,Slovakia
+200,Singapore,Singapore
+201,Somalia,Somalia
+202,South Africa,South Africa
+203,Spain,Spain
+207,Suriname,Suriname
+208,Tajikistan,Tajikistan
+209,Eswatini,eSwatini
+210,Sweden,Sweden
+211,Switzerland,Switzerland
+212,Syrian Arab Republic,Syria
+213,Turkmenistan,Turkmenistan
+215,United Republic of Tanzania,Tanzania
+216,Thailand,Thailand
+217,Togo,Togo
+218,Tokelau,
+219,Tonga,Tonga
+220,Trinidad and Tobago,Trinidad and Tobago
+221,Oman,Oman
+222,Tunisia,Tunisia
+223,Turkey,Turkey
+225,United Arab Emirates,United Arab Emirates
+226,Uganda,Uganda
+227,Tuvalu,
+229,United Kingdom,United Kingdom
+230,Ukraine,Ukraine
+231,United States of America,United States of America
+233,Burkina Faso,Burkina Faso
+234,Uruguay,Uruguay
+235,Uzbekistan,Uzbekistan
+236,Venezuela (Bolivarian Republic of),Venezuela
+237,Viet Nam,Vietnam
+238,Ethiopia,Ethiopia
+244,Samoa,Samoa
+249,Yemen,Yemen
+250,Democratic Republic of the Congo,Dem. Rep.Congo
+251,Zambia,Zambia
+255,Belgium,Belgium
+256,Luxembourg,Luxembourg
+272,Serbia,Serbia
+273,Montenegro,Montenegro
+276,Sudan,Sudan
+277,South Sudan,S. Sudan
+299,Occupied Palestinian Territory,Palestine
+351,China,China
