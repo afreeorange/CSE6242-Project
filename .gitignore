@@ -2,3 +2,10 @@ data/db/sqldiff.exe
 data/db/sqlite3.exe
 data/db/sqlite3_analyzer.exe
 data/db/script.out.txt
+
+api/wsi_api/__pycache__
+api/wsi_api/app/__pycache__
+node_modules
+yarn.lock
+
+t102a
