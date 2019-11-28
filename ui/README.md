@@ -18,7 +18,7 @@ yarn test
 yarn build
 ```
 
-### Other Stuff
+### References
 
 * [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
 * [Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)

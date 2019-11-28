@@ -43,9 +43,17 @@ def wsi_endpoint():
 @wsi_api_blueprint.route('/predict')
 @use_args(
     {
-        "year": fields.Str(required=False),
-        "gdp_delta": fields.Int(required=True),
-        "population_delta": fields.Int(required=True),
+        "year": fields.Str(
+            required=False,
+        ),
+        "gdp_delta": fields.Int(
+            required=True,
+            missing=0,
+        ),
+        "population_delta": fields.Int(
+            required=True,
+            missing=0,
+        ),
     }
 )
 def predict_endpoint(args):
