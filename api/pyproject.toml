@@ -1,8 +1,18 @@
 [tool.poetry]
-name = "api"
+name = "wsi_api"
 version = "0.1.0"
-description = ""
-authors = ["Nikhil Anand <mail@nikhil.io>"]
+description = "Upstream API for an app that shows Global Water Stress Index"
+authors = [
+    "Deepti Anand <danand8@gatech.edu>",
+    "Hyelim Yang <hyang416@gatech.edu>",
+    "Joseph Michael Tritchler <jtritchler3@gatech.edu>",
+    "Nikhil Anand <nanand33@gatech.edu>",
+    "Spencer Price <sprice31@gatech.edu>",
+    "Yatish Kasaraneni <ykasaraneni3@gatech.edu>",
+]
+include = [
+    "static/**"
+]
 license = "MIT"
 
 [tool.poetry.dependencies]
@@ -11,6 +21,7 @@ flask = "^1.1"
 flask-cors = "^3.0"
 flask-sqlalchemy = "^2.4"
 gunicorn = "^19.9"
+webargs = "^5.5"
 
 [tool.poetry.dev-dependencies]
 

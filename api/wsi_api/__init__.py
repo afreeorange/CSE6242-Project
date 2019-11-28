@@ -1,8 +1,10 @@
-from datetime import datetime
 import os
+import sqlite3
+import sys
+from datetime import datetime
+from sqlite3 import Error as ConnectionError
 
 from .factory import create_app
-
 
 __title__ = 'wsi_api'
 __version__ = '0.0.1',
@@ -15,4 +17,14 @@ __description__ = """
 Upstream API for an app that shows Global  Water Stress Index
 """
 
-app = create_app(debug=os.getenv('DEBUG', False))
+# Initialize a DB connection
+sqlite3.enable_callback_tracebacks(True)
+db_connection = None
+
+try:
+    db_connection = sqlite3.connect("wsi_data.db")
+except ConnectionError as e:
+    print("Could not connect to database:", str(e))
+    sys.exit(1)
+
+app = create_app(db_connection, debug=os.getenv('DEBUG', False))

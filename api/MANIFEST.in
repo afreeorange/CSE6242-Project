@@ -1,2 +1,0 @@
-recursive-include wsi_api/app/static *
-recursive-include wsi_api/app/templates *
