@@ -1,7 +1,9 @@
-from flask import render_template, jsonify
-from . import wsi_api_blueprint
 import sqlite3
 from sqlite3 import Error
+
+from flask import jsonify, render_template
+
+from . import wsi_api_blueprint
 
 
 @wsi_api_blueprint.route('/')
@@ -16,6 +18,7 @@ def sample_endpoint():
         "errors": [],
     })
 
+
 def create_connection():
     sqlite3.enable_callback_tracebacks(True)
     conn = None
@@ -23,8 +26,9 @@ def create_connection():
         conn = sqlite3.connect("./project.db")
     except Error as e:
         print(e)
- 
+
     return conn
+
 
 def serialize_wsi_data(rows):
     returnDict = {}
@@ -57,6 +61,7 @@ def serialize_wsi_data(rows):
 
     return returnDict
 
+
 @wsi_api_blueprint.route('/wsi')
 def wsi_endpoint():
     #print(year)
@@ -65,14 +70,32 @@ def wsi_endpoint():
 
     rows = None
     cur.execute("select country.Name, wsi.Y1980, wsi.Y1985, wsi.Y1990, wsi.Y1995, wsi.Y2000, wsi.Y2005, wsi.Y2010, wsi.Y2015 from wsi join country on country.AreaId = wsi.AreaId")
-    
+
     rows = cur.fetchall()
 
     return (jsonify(serialize_wsi_data(rows)))
 
-@wsi_api_blueprint.route('/calculate/<int:indicator>')
-def calculate_wsi_endpoint(indicator):
+
+@wsi_api_blueprint.route('/predict')
+def predict_endpoint():
     return jsonify({
-        "message": "Work in progress",
+        "data":{
+            "2020": {
+                "Armenia": 0.01,
+                "Afganistan": 0.01,
+                "Albania": 0.01,
+                "Algeria": 100,
+                "Angola": 0.01,
+                "Antigua and Barb.": 0.01,
+            },
+            "2025": {
+                "Armenia": 1,
+                "Afganistan": 1,
+                "Albania": 1,
+                "Algeria": 5,
+                "Angola": 1,
+                "Antigua and Barb.": 1,
+            },
+        },
         "errors": [],
     })
