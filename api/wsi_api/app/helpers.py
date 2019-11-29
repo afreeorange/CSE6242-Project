@@ -9,6 +9,9 @@ def prepare_response(rows):
     wsi2005Dict = {}
     wsi2010Dict = {}
     wsi2015Dict = {}
+    wsi2020Dict = {}
+    wsi2025Dict = {}
+    wsi2030Dict = {}
 
     for x in rows:
         wsi1980Dict[x[0]] = x[1]
@@ -19,6 +22,9 @@ def prepare_response(rows):
         wsi2005Dict[x[0]] = x[6]
         wsi2010Dict[x[0]] = x[7]
         wsi2015Dict[x[0]] = x[8]
+        wsi2020Dict[x[0]] = x[9]
+        wsi2025Dict[x[0]] = x[10]
+        wsi2030Dict[x[0]] = x[11]
 
     returnDict['1980'] = wsi1980Dict
     returnDict['1985'] = wsi1985Dict
@@ -28,5 +34,8 @@ def prepare_response(rows):
     returnDict['2005'] = wsi2005Dict
     returnDict['2010'] = wsi2010Dict
     returnDict['2015'] = wsi2015Dict
+    returnDict['2020'] = wsi2020Dict
+    returnDict['2025'] = wsi2025Dict
+    returnDict['2030'] = wsi2030Dict
 
     return returnDict
