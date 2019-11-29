@@ -1,3 +1,6 @@
+api/wsi_api/app/ui/*
+api/wsi_api/app/db/*
+
 # https://github.com/github/gitignore
 
 # --- Windows ---

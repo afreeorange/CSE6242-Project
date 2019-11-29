@@ -1,3 +1,33 @@
+import os
+
+from flask import g
+import sqlite3
+from sqlite3 import Error as ConnectionError
+
+sqlite3.enable_callback_tracebacks(True)
+
+
+def get_db():
+    """
+    If DEBUG is set, take the SQLite database path from <project root>/data.
+    If not, look for the bundled version in this package.
+    """
+    db_connection = None
+
+    path_to_db = os.path.dirname(__file__) + "/db/wsi_data.db"
+    if os.getenv('DEBUG'):
+        path_to_db = os.path.dirname(__file__) + "/../../../data/wsi_data.db"
+
+    try:
+        db_connection = sqlite3.connect(path_to_db)
+    except ConnectionError as e:
+        raise ConnectionError("Could not connect to database:", str(e))
+    else:
+        if not hasattr(g, 'sqlite_db'):
+            g.sqlite_db = db_connection
+        return g.sqlite_db
+
+
 def prepare_response(rows):
     returnDict = {}
 

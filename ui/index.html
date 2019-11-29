@@ -14,14 +14,28 @@
 <script src="WorldMapClass.js"></script>
 
 <div id="titlebar"></div>
+<div id="footer">
+  <div id="water-org">
+    Give the gift of water.
+    <p>
+      <a href="https://water.org/donate/" target="_blank">Donate</a>
+    </p>
+  </div>
+  <div id="aquastat">
+    Data source: <a href="http://www.fao.org/nr/water/aquastat/data/query/" target="_blank">AQUASTAT</a>
+    <div id="disclaimer">
+        Created for GaTech CSE6242.  This website is not associated with water.org.
+    </div>
+  </div>
+</div>
 <div id="editor" class="transition">
   <form>
     <label>
-      GDP Growth Rate Adjustment<br>
+      GDP Growth Rate Adjustment (%)<br>
       -5<input type="range" min="-5" max="5" value="0" class="slider" id="gdp">5
     </label>
     <label>
-      Population Growth Rate Adjustment<br>
+      Population Growth Rate Adjustment (%)<br>
       -5<input type="range" min="-5" max="5" value="0" class="slider" id="pop">5
     </label>
   </form>

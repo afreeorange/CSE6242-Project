@@ -1,34 +1,29 @@
-from flask import current_app as app
-from flask import jsonify
+from flask import jsonify, send_file
 from webargs import fields
 from webargs.flaskparser import use_args
 
 from . import wsi_api_blueprint
-from .helpers import prepare_response
-import sqlite3
-from sqlite3 import Error
+from .helpers import prepare_response, get_db
 
+
+# Serve the UI. Something like nginx is best
+# suited for this but this is simpler.
 
 @wsi_api_blueprint.route('/')
-def sample_endpoint():
-    return jsonify({
-        "message": "Hello from the WSI API <3",
-    })
+def index():
+    return send_file("app/ui/index.html")
 
-def create_connection():
-    sqlite3.enable_callback_tracebacks(True)
-    conn = None
-    try:
-        conn = sqlite3.connect("wsi_data.db")
-    except Error as e:
-        print(e)
 
-    return conn
+@wsi_api_blueprint.route('/<path:url>')
+def sample_endpoint(url):
+    return send_file(url)
+
+
+# WSI API Endpoints
 
 @wsi_api_blueprint.route('/wsi')
 def wsi_endpoint():
-    #conn = app.config["db_connection"]
-    conn = create_connection()
+    conn = get_db()
     cur = conn.cursor()
     rows = None
 
@@ -55,24 +50,16 @@ def wsi_endpoint():
     return (jsonify(prepare_response(rows)))
 
 
-# @wsi_api_blueprint.route('/predict')
-# @use_args(
-#     {
-#         "year": fields.Str(
-#             required=False
-#         ),
-#         "gdp_delta": fields.Int(
-#             required=True,
-#             missing=0
-#         ),
-#         "population_delta": fields.Int(
-#             required=True,
-#             missing=0
-#         )
-#     }
-# )
-# def predict_endpoint(args):
-#     """
-#     TODO: Finish this endpoint
-#     """
-#     return jsonify(args)
+@wsi_api_blueprint.route('/predict')
+@use_args(
+    {
+        "year": fields.Str(required=False),
+        "gdp_delta": fields.Int(required=True),
+        "population_delta": fields.Int(required=True)
+    }
+)
+def predict_endpoint(args):
+    """
+    TODO: Finish this endpoint
+    """
+    return jsonify(args)
