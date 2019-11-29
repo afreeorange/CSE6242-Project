@@ -1,0 +1,37 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: afreeorange/build:latest
+    steps:
+      - checkout
+      - run:
+          name: Building package
+          command: make
+      - persist_to_workspace:
+          root: ./
+          paths: ./*
+
+  github-release:
+    docker:
+      - image: afreeorange/build:latest
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Releasing to GitHub
+          command: /bin/bash ./.circleci/release
+      - persist_to_workspace:
+          root: ./
+          paths: ./*
+
+workflows:
+  version: 2.1
+
+  build-and-release:
+    jobs:
+      - build
+      - github-release:
+          requires:
+            - build

@@ -1,5 +1,13 @@
 .PHONY: all
-all: clean build
+all: clean bumpversion build
+
+
+.PHONY: install_deps
+install_deps:
+	pushd ./api && \
+		poetry install && \
+		popd
+
 
 .PHONY: clean
 clean:
@@ -8,8 +16,9 @@ clean:
 	rm -rf ./api/dist
 	rm -rf ./api/wsi_api/app/{ui,db}
 
+
 .PHONY: build
-build: clean
+build: clean install_deps
 	@# Prep the static asset folders in package
 	mkdir -p ./api/wsi_api/app/{ui,db}
 
@@ -26,3 +35,14 @@ build: clean
 
 	@# Show us the goods
 	mv ./api/dist .
+
+
+.PHONY: bumpversion
+bumpversion:
+	pushd ./api && \
+		poetry version && \
+		popd
+
+.PHONY: version
+version:
+	@grep version ./api/pyproject.toml | cut -d\" -f2
