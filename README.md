@@ -1,7 +1,7 @@
 Predicting & Visualizing Water Stress Index (WSI)
 =================================================
 
-[![CircleCI](https://circleci.com/gh/afreeorange/CSE6242-Project/tree/master.svg?style=svg)](https://circleci.com/gh/afreeorange/CSE6242-Project/tree/master)
+[![CircleCI](https://circleci.com/gh/afreeorange/CSE6242-Project.svg?style=svg&circle-token=4b95a7d95770cf0d67ae806bb5281aa321ecae69)](https://circleci.com/gh/afreeorange/CSE6242-Project)
 
 A project by the one and only Team 102 🎸💃🙌 for CSE 6242 @GATech.
 
