@@ -9,52 +9,50 @@
 */
 class Graphic {
   /* Constructor of the Generic Graphic Class
-  */
-  constructor(elemName, params={}) {
-
+   */
+  constructor(elemName, params = {}) {
     // Store the name of the element to attach the SVG
     this.elemName = elemName;
     // Create the SVG reference
-    this.svg = d3.select(elemName).append('svg');
+    this.svg = d3.select(elemName).append("svg");
     // Create the margins
     this.margin = params.margin || {
       top: 0,
       bottom: 0,
       left: 0,
       right: 0,
-    }
+    };
 
     // Create the chart element offset by the margins
-    this.chart = this.svg.append('g')
-      .attr('class', 'chart')
-      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+    this.chart = this.svg
+      .append("g")
+      .attr("class", "chart")
+      .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`);
   }
 
   /* Return the html element of the SVG using jQuery
-  */
+   */
   get element() {
-      return $(this.elemName);
+    return $(this.elemName);
   }
 
   /* Initializes the SVG
-  */
+   */
   init() {
-      // Draw the SVG
+    // Draw the SVG
+    this.resize();
+    // Redraw the SVG when the window is resized using jQuery
+    $(window).resize(() => {
       this.resize();
-      // Redraw the SVG when the window is resized using jQuery
-      $(window).resize(() => {
-          this.resize();
-      })
+    });
   }
 
   /* Draws the graphic -- overridden by subclass
-  */
-  draw() {
-
-  }
+   */
+  draw() {}
 
   /* Resize the SVG and redraw it as the window size changes
-  */
+   */
   resize() {
     // Set the SVG width and height to the size of the div
     this.svgWidth = this.element.width();
@@ -63,44 +61,38 @@ class Graphic {
     this.width = this.svgWidth - this.margin.left - this.margin.right;
     this.height = this.svgHeight - this.margin.top - this.margin.bottom;
     // Update the SVG width and height
-    this.svg
-      .attr('width', this.svgWidth)
-      .attr('height', this.svgHeight);
+    this.svg.attr("width", this.svgWidth).attr("height", this.svgHeight);
     // Update the chart width and height
-    this.chart
-      .attr('width', this.width)
-      .attr('height', this.height);
+    this.chart.attr("width", this.width).attr("height", this.height);
 
     // Draw the SVG
     this.draw();
   }
 
   /* Create a new element group
-  */
-  newGroup(name, parent=undefined) {
+   */
+  newGroup(name, parent = undefined) {
     if (parent === undefined) {
       this.chart.selectAll(`.${name}`).remove();
-      this[name] = this.chart.append('g').classed(name, true);
+      this[name] = this.chart.append("g").classed(name, true);
     } else {
       parent.selectAll(`.${name}`).remove();
-      parent[name] = parent.append('g').classed(name, true);
+      parent[name] = parent.append("g").classed(name, true);
     }
   }
 
   /* Draw the error message if any parameters are missing
-  */
+   */
   showErrors() {
+    // Create the error message group
+    this.newGroup("errors");
 
-      // Create the error message group
-      this.newGroup('errors');
-
-      this.errors
-        // Move to the center of the chart
-        .attr('transform',
-              `translate(${this.width / 2}, ${this.height / 2})`)
-        .append('text')
-          .text('Missing required parameters.')
-          .attr('text-anchor', 'middle')
-          .style('font', '12px sans-serif');
+    this.errors
+      // Move to the center of the chart
+      .attr("transform", `translate(${this.width / 2}, ${this.height / 2})`)
+      .append("text")
+      .text("Missing required parameters.")
+      .attr("text-anchor", "middle")
+      .style("font", "12px sans-serif");
   }
 }

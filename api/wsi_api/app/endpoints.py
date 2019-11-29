@@ -1,22 +1,29 @@
-from flask import current_app as app
-from flask import jsonify
+from flask import jsonify, send_file
 from webargs import fields
 from webargs.flaskparser import use_args
 
 from . import wsi_api_blueprint
-from .helpers import prepare_response
+from .helpers import prepare_response, get_db
 
+
+# Serve the UI. Something like nginx is best
+# suited for this but this is simpler.
 
 @wsi_api_blueprint.route('/')
-def sample_endpoint():
-    return jsonify({
-        "message": "Hello from the WSI API <3",
-    })
+def index():
+    return send_file("app/ui/index.html")
 
+
+@wsi_api_blueprint.route('/<path:url>')
+def sample_endpoint(url):
+    return send_file(url)
+
+
+# WSI API Endpoints
 
 @wsi_api_blueprint.route('/wsi')
 def wsi_endpoint():
-    conn = app.config["db_connection"]
+    conn = get_db()
     cur = conn.cursor()
     rows = None
 
