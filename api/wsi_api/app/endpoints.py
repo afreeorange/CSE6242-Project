@@ -1,6 +1,3 @@
-import sqlite3
-from sqlite3 import Error
-
 from flask import current_app as app
 from flask import jsonify
 from webargs import fields
@@ -16,20 +13,10 @@ def sample_endpoint():
         "message": "Hello from the WSI API <3",
     })
 
-def create_connection():
-    sqlite3.enable_callback_tracebacks(True)
-    conn = None
-    try:
-        conn = sqlite3.connect("wsi_data.db")
-    except Error as e:
-        print(e)
-
-    return conn
 
 @wsi_api_blueprint.route('/wsi')
 def wsi_endpoint():
-    #conn = app.config["db_connection"]
-    conn = create_connection()
+    conn = app.config["db_connection"]
     cur = conn.cursor()
     rows = None
 
