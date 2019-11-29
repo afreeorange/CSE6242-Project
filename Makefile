@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .PHONY: all
-all: clean bumpversion build
+all: clean build
 
 
 .PHONY: install_deps
@@ -20,7 +20,7 @@ clean:
 
 
 .PHONY: build
-build: clean install_deps
+build: clean install_deps bumpversion
 	@# Prep the static asset folders in package
 	mkdir -p ./api/wsi_api/app/{ui,db}
 
