@@ -1,3 +1,6 @@
+import sqlite3
+from sqlite3 import Error
+
 from flask import current_app as app
 from flask import jsonify
 from webargs import fields
@@ -5,8 +8,6 @@ from webargs.flaskparser import use_args
 
 from . import wsi_api_blueprint
 from .helpers import prepare_response
-import sqlite3
-from sqlite3 import Error
 
 
 @wsi_api_blueprint.route('/')
@@ -55,24 +56,16 @@ def wsi_endpoint():
     return (jsonify(prepare_response(rows)))
 
 
-# @wsi_api_blueprint.route('/predict')
-# @use_args(
-#     {
-#         "year": fields.Str(
-#             required=False
-#         ),
-#         "gdp_delta": fields.Int(
-#             required=True,
-#             missing=0
-#         ),
-#         "population_delta": fields.Int(
-#             required=True,
-#             missing=0
-#         )
-#     }
-# )
-# def predict_endpoint(args):
-#     """
-#     TODO: Finish this endpoint
-#     """
-#     return jsonify(args)
+@wsi_api_blueprint.route('/predict')
+@use_args(
+    {
+        "year": fields.Str(required=False),
+        "gdp_delta": fields.Int(required=True),
+        "population_delta": fields.Int(required=True)
+    }
+)
+def predict_endpoint(args):
+    """
+    TODO: Finish this endpoint
+    """
+    return jsonify(args)
