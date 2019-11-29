@@ -5,7 +5,6 @@ Predicting & Visualizing Water Stress Index (WSI)
 
 A project by the one and only Team 102 🎸💃🙌 for CSE 6242 @GATech.
 
-
 Development
 -----------
 
