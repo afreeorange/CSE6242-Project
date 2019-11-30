@@ -5,6 +5,8 @@ Predicting & Visualizing Water Stress Index (WSI)
 
 An app that visually describes and forecasts Global Water Stress Index. A final project by the one and only Team 102 🎸💃🙌 for CSE 6242 @GATech.
 
+[See it in action here](http://waterstressindex.info/).
+
 Running
 -------
 
