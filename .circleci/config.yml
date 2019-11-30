@@ -30,6 +30,7 @@ jobs:
     docker:
       - image: afreeorange/build:latest
     steps:
+      - add_ssh_keys
       - run:
           name: Deploying to AWS
           command: ssh $AWS_USER@$AWS_HOST -p $AWS_PORT $AWS_DEPLOY_SCRIPT
