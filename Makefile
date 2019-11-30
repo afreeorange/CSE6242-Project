@@ -20,7 +20,7 @@ clean:
 
 
 .PHONY: build
-build: clean install_deps bumpversion
+build: clean install_deps
 	@# Prep the static asset folders in package
 	mkdir -p ./api/wsi_api/app/{ui,db}
 
@@ -48,3 +48,10 @@ bumpversion:
 .PHONY: version
 version:
 	@grep version ./api/pyproject.toml | cut -d\" -f2
+
+
+.PHONY: ci_build
+ci_build: bumpversion build
+	git add ./api/pyproject.toml
+	git commit -m "CircleCI: Version Bump"
+	git push origin master

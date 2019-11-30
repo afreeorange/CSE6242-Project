@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Building package
-          command: make
+          command: make ci_build
       - persist_to_workspace:
           root: ./
           paths: ./*
