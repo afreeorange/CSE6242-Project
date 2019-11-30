@@ -5,15 +5,12 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-import { scaleLinear } from "d3-scale";
 import { PatternLines } from "@vx/pattern";
 import tooltip from "wsdm-tooltip";
 
-import { D3_GEO_URL, D3_DOMAIN, D3_RANGE } from "../constants";
+import { D3_GEO_URL, colorScale } from "../constants";
 
-const colorScale = scaleLinear()
-  .domain(D3_DOMAIN)
-  .range(D3_RANGE);
+
 
 /**
  * Tooltip stuff

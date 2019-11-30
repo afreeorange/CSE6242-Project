@@ -5,6 +5,8 @@ import Slider from "rc-slider";
 import Draggable from "react-draggable";
 import "rc-slider/assets/index.css";
 
+import Legend from './Legend';
+
 function Timeline({ marks, onAfterChange, width, height }) {
   /**
    * This is lazy, will throw a warning but It Works(tm),
@@ -30,6 +32,7 @@ function Timeline({ marks, onAfterChange, width, height }) {
           onAfterChange={onAfterChange}
           included={false}
         />
+        <Legend />
       </div>
     </Draggable>
   );

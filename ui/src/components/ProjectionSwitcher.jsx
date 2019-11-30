@@ -1,14 +1,11 @@
 import React from "react";
 
-function ProjectionSwitcher({ projections, changeHandler }) {
-  return (
-    <select onChange={changeHandler}>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-  );
-}
+const ProjectionSwitcher = ({ projections, changeHandler }) => (
+  <select onChange={changeHandler}>
+    {Object.keys(projections).map(projectionName => (
+      <option value={projections[projectionName]}>{projectionName}</option>
+    ))}
+  </select>
+);
 
 export default ProjectionSwitcher;

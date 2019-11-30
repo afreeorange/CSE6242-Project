@@ -1,8 +1,6 @@
 import React from "react";
-import ProjectionSwitcher from "./ProjectionSwitcher";
 
-function Header({ children }) {
-  console.log(typeof children);
+const Header = ({ children }) => {
   return (
     <header>
       <h1>Global Water Stress Index</h1>

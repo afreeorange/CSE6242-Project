@@ -4,6 +4,8 @@ import Map from "./components/Map";
 import Timeline from "./components/Timeline";
 import Header from "./components/Header";
 import ProjectionSwitcher from "./components/ProjectionSwitcher";
+import Links from "./components/Links";
+
 import {
   DEFAULT_PROJECTION,
   VALID_PROJECTIONS,
@@ -42,9 +44,7 @@ const App = () => {
     setTimelineMarks(prepareTimelineMarks(data));
   };
 
-  const handleProjectionChange = e => {
-    console.log(e.target.value);
-  };
+  const handleProjectionChange = e => setProjection(e.target.value);
 
   const handleYearChange = timelineIndex => {
     /**
@@ -67,7 +67,8 @@ const App = () => {
   return data && timelineMarks ? (
     <React.Fragment>
       <Header>
-        <ProjectionSwitcher changeHandler={handleProjectionChange} />
+        <ProjectionSwitcher projections={VALID_PROJECTIONS} changeHandler={handleProjectionChange} />
+        <Links />
       </Header>
       <Map projection={projection} WSIDataForYear={data[year]} />
       <Timeline marks={timelineMarks} onAfterChange={handleYearChange} />
