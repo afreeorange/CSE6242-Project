@@ -25,9 +25,14 @@ jobs:
       - run:
           name: Releasing to GitHub
           command: /bin/bash ./.circleci/release
-      - persist_to_workspace:
-          root: ./
-          paths: ./*
+
+  aws-deploy:
+    docker:
+      - image: afreeorange/build:latest
+    steps:
+      - run:
+          name: Deploying to AWS
+          command: ssh $AWS_USER@$AWS_HOST -p $AWS_PORT $AWS_DEPLOY_SCRIPT
 
 workflows:
   version: 2.1
@@ -38,3 +43,6 @@ workflows:
       - github-release:
           requires:
             - build
+      - aws-deploy:
+          requires:
+            - github-release
