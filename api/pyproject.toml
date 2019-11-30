@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wsi_api"
-version = "0.0.34"
+version = "0.0.35"
 description = "Upstream API for an app that shows Global Water Stress Index"
 authors = [
     "Deepti Anand <danand8@gatech.edu>",
