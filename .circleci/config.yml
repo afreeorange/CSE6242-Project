@@ -11,7 +11,7 @@ jobs:
           command: |
             git config user.email "auto@nikhil.io"
             git config user.name "CircleCI Builder"
-            make ci_build
+            make build
       - persist_to_workspace:
           root: ./
           paths: ./*
@@ -40,7 +40,6 @@ workflows:
 
   build-and-release:
     jobs:
-      - build
       - github-release:
           requires:
             - build

@@ -13,10 +13,10 @@ install_deps:
 
 .PHONY: clean
 clean:
-	find . -type f -iname "*.pyc" -or -type d -name "__pycache__" -delete
-	rm -rf ./dist
-	rm -rf ./api/dist
-	rm -rf ./api/wsi_api/app/{ui,db}
+	find . -type f -iname "*.pyc" -or -type d -name "__pycache__" -delete;
+	rm -rf ./dist \
+		./api/dist \
+		./api/wsi_api/app/{ui,db}
 
 
 .PHONY: build
@@ -39,8 +39,8 @@ build: clean install_deps
 	mv ./api/dist .
 
 
-.PHONY: bumpversion
-bumpversion:
+.PHONY: bump
+bump:
 	pushd ./api && \
 		poetry version && \
 		popd
@@ -50,8 +50,12 @@ version:
 	@grep version ./api/pyproject.toml | cut -d\" -f2
 
 
-.PHONY: ci_build
-ci_build: bumpversion build
-	git add ./api/pyproject.toml
-	git commit -m "CircleCI: Version Bump"
-	git push origin master
+# This is nightmarish and leads to redundant builds.
+# Bump versions manually for now. Build numbers in CircleCI might be
+# a solution.
+#
+# .PHONY: ci_build
+# ci_build: bumpversion build
+# 	git add ./api/pyproject.toml
+# 	git commit -m "CircleCI: Version Bump"
+# 	git push origin master
