@@ -8,7 +8,10 @@ jobs:
       - checkout
       - run:
           name: Building package
-          command: make ci_build
+          command: |
+            git config user.email "auto@nikhil.io"
+            git config user.name "CircleCI Builder"
+            make ci_build
       - persist_to_workspace:
           root: ./
           paths: ./*
