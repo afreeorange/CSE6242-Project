@@ -8,6 +8,7 @@ from .helpers import prepare_response, get_db, prepare_predict_response
 
 # Serve the UI. Something like nginx is best
 # suited for this but this is simpler.
+# TODO: This needs to be a blueprint...
 
 @wsi_api_blueprint.route('/')
 def index():

@@ -10,7 +10,7 @@ An app that visually describes and forecasts Global Water Stress Index. A final 
 Running
 -------
 
-Requires Python 3.6+. In a virtual environment,
+Requires Python 3.6+. Install [the latest release](https://github.com/afreeorange/CSE6242-Project/releases) in a virtual environment:
 
 ```bash
 # Just in case
@@ -73,6 +73,10 @@ Development
 
 The API and UI are separate sub-projects which are eventually smushed together at build time to create the deployable artifact.
 
+### Versioning
+
+Once you're done with your changes, manage the build version manually in one place: `api/pyproject.toml`. Note that CI/CD will clobber any existing build artifacts (this is on purpose.)
+
 ### API
 
 This is in `./api`. You'll need Python 3.6+ and [Poetry](https://poetry.eustace.io/) for dependency management.
@@ -120,10 +124,16 @@ make bump
 
 ### Web Interface
 
-As of this writing, it doesn't need a complicated build/watch process. Install something like [`http-server`](https://www.npmjs.com/package/http-server) and do this
+Bootstrapped with the awesome [Create React App](https://github.com/facebook/create-react-app). Do this _after_ you have the API running in a separate session. It will expect the API to be listening on **port 8000** (you can change this in `ui/package.json`.)
 
 ```bash
-hs ui
+cd ui/
+
+# Install dependencies
+yarn
+
+# Start the development server
+yarn start
 ```
 
 Deployment

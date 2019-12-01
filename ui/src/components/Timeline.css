@@ -1,7 +1,7 @@
 .timeline {
   background: #fff;
-  border-radius: 10px;
   border: 1px dotted #eee;
+  border-radius: 10px;
   box-shadow: 0 0 72px -41px rgba(51, 51, 51, 1);
   cursor: pointer;
   margin: 0 auto;
