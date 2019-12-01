@@ -1,0 +1,211 @@
+---
+title: "ARIMA_project"
+author: "Hyelim Yang"
+date: "11/22/2019"
+output: html_document
+---
+
+```{r results='hide', message=FALSE, warning=FALSE}
+rm(list=ls())
+library(RSQLite)
+library(dplyr)
+library(forecast)
+library(sweep)
+library(markovchain)
+```
+
+
+## Build an ARIMA for cultivated area for each country
+
+```{r}
+conn <- dbConnect(RSQLite::SQLite(), "project.db")
+cultivated_area <- dbGetQuery(conn, "
+Select Year, AreaId, Area, Value FROM parameter
+where VariableId = 4103
+ORDER by Area
+")
+exclude_id <- dbGetQuery(conn, "SELECT AreaId from
+	(
+		SELECT Year, AreaId, Value, Area, count(Year) as count from parameter
+		where VariableId=4103
+		GROUP By AreaId
+		)
+	Where count <= 2")
+exclude_id <- exclude_id$AreaId
+
+```
+
+```{r}
+df <- cultivated_area %>% filter(!AreaId %in% c(exclude_id))
+```
+
+```{r}
+AreaName <- unique(df$Area)
+temp_matrix <- matrix(0, length(AreaName), 4)
+for (i in 1:length(AreaName)) {
+  temp <- df %>% filter(Area == AreaName[i]) %>% select(c(Year, Value))
+  
+  # The first column is AreaName
+  temp_matrix[i,1] = AreaName[i]
+  
+  # Convert to time series data
+  ts_CA <- ts(temp$Value, start=min(temp$Year), frequency = 0.2)
+  # Fitting to ARIMA
+  fit <- auto.arima(ts_CA, max.p = 2, max.q = 2, max.P = 2, max.Q = 2, max.d=2, ic='aic', allowdrift=TRUE)
+  # Prediction for 50 years
+  pred <- forecast(fit,h=10)
+  # Convert the prediction to dataframe
+  Fcast_df <- pred %>% sw_sweep(.) 
+  # Select forecasted data
+  f_df <- Fcast_df[complete.cases(Fcast_df),]
+  f_df <- f_df %>% select(c(index, value))
+  
+  # Find data closest to 2020 year
+  app_2020 <- f_df$value[which(abs(2020-f_df$index)==min(abs(2020-f_df$index)))]
+  temp_matrix[i,2] = app_2020
+  
+  # Find data closest to 2025 year
+  app_2025 <- f_df$value[which(abs(2025-f_df$index)==min(abs(2025-f_df$index)))]
+  temp_matrix[i,3] = app_2025
+  
+  # Find data closest to 2030 year
+  app_2030 <- f_df$value[which(abs(2030-f_df$index)==min(abs(2030-f_df$index)))]
+  temp_matrix[i,4] = app_2030
+}
+```
+
+```{r}
+plot_prediction <- function (area_name) {
+  temp <- df %>% filter(Area == area_name) %>% select(c(Year, Value))
+  ts_CA <- ts(temp$Value, start=min(temp$Year), frequency = 0.2)
+  fit <- auto.arima(ts_CA, max.p = 2, max.q = 2, max.P = 2, max.Q = 2, max.d=2, ic='aic', allowdrift=TRUE)
+  pred <- forecast(fit,h=5)
+  Fcast_df <- pred %>% sw_sweep(.) 
+  f_df <- Fcast_df[complete.cases(Fcast_df),]
+  f_df <- f_df %>% select(c(index, value))
+  plot(pred, xlab = "Year", ylab="Cultivated Area", main=paste('Forecast TFW for ', area_name))
+  app_2020 <- f_df$value[which(abs(2020-f_df$index)==min(abs(2020-f_df$index)))]
+  print(paste('Predicted future value at 2020: ',app_2020))
+  app_2030 <- f_df$value[which(abs(2030-f_df$index)==min(abs(2030-f_df$index)))]
+  print(paste('Predicted future value at 2030: ',app_2030))
+}
+
+```
+
+```{r}
+plot_prediction("Albania")
+```
+```{r}
+plot_prediction("Jordan")
+```
+
+```{r}
+plot_prediction("Cameroon")
+```
+
+```{r}
+# convert matrix to dataframe
+df_comp <- as.data.frame(temp_matrix)
+colnames(df_comp) <- c("Area", "Y2020","Y2025", "Y2030")
+df_comp$Y2020 <- as.numeric(as.character(df_comp$Y2020))
+df_comp$Y2025 <- as.numeric(as.character(df_comp$Y2025))
+df_comp$Y2030 <- as.numeric(as.character(df_comp$Y2030))
+##
+##
+## Replace negative value at 2030 with the previous year value (value at 2025) ##
+df_comp$Y2030[df_comp$Y2030 < 0] <- df_comp$Y2025[df_comp$Y2030 < 0]
+write.csv(df_comp,'predicted_cultivated_area_v2.csv')
+```
+
+## Build an ARIMA for TRSW for each country
+```{r}
+TRSW <- dbGetQuery(conn, "
+Select Year, AreaId, Area, Value FROM parameter
+where VariableId = 4185
+ORDER by Area
+")
+exclude_id2 <- dbGetQuery(conn, "SELECT AreaId from
+	(
+		SELECT Year, AreaId, Value, Area, count(Year) as count from parameter
+		where VariableId=4185
+		GROUP By AreaId
+		)
+	Where count <= 2")
+exclude_id_2 <- exclude_id2$AreaId
+df_TRSW <- TRSW %>% filter(!AreaId %in% c(exclude_id_2))
+```
+
+
+```{r}
+AreaName <- unique(df_TRSW$Area)
+temp_matrix2 <- matrix(0, length(AreaName), 4)
+for (i in 1:length(AreaName)) {
+  temp <- df_TRSW %>% filter(Area == AreaName[i]) %>% select(c(Year, Value))
+  
+  # The first column is AreaName
+  temp_matrix2[i,1] = AreaName[i]
+  
+  # Convert to time series data
+  ts_CA <- ts(temp$Value, start=min(temp$Year), frequency = 0.2)
+  # Fitting to ARIMA
+  fit <- auto.arima(ts_CA, max.p = 2, max.q = 2, max.P = 2, max.Q = 2, max.d=2, ic='aic', allowdrift=TRUE)
+  # Prediction for 50 years
+  pred <- forecast(fit,h=10)
+  # Convert the prediction to dataframe
+  Fcast_df <- pred %>% sw_sweep(.) 
+  # Select forecasted data
+  f_df <- Fcast_df[complete.cases(Fcast_df),]
+  f_df <- f_df %>% select(c(index, value))
+  
+  # Find data closest to 2020 year
+  app_2020 <- f_df$value[which(abs(2020-f_df$index)==min(abs(2020-f_df$index)))]
+  temp_matrix2[i,2] = app_2020
+  
+  # Find data closest to 2025 year
+  app_2025 <- f_df$value[which(abs(2025-f_df$index)==min(abs(2025-f_df$index)))]
+  temp_matrix2[i,3] = app_2025
+  
+  
+  # Find data closest to 2030 year
+  app_2030 <- f_df$value[which(abs(2030-f_df$index)==min(abs(2030-f_df$index)))]
+  temp_matrix2[i,4] = app_2030
+}
+
+TRSW_prediction <- function (area_name) {
+  temp <- df_TRSW %>% filter(Area == area_name) %>% select(c(Year, Value))
+  ts_CA <- ts(temp$Value, start=min(temp$Year), frequency = 0.2)
+  fit <- auto.arima(ts_CA, max.p = 2, max.q = 2, max.P = 2, max.Q = 2, max.d=2, ic='aic', allowdrift=TRUE)
+  pred <- forecast(fit,h=5)
+  Fcast_df <- pred %>% sw_sweep(.) 
+  f_df <- Fcast_df[complete.cases(Fcast_df),]
+  f_df <- f_df %>% select(c(index, value))
+  plot(pred)
+  app_2020 <- f_df$value[which(abs(2020-f_df$index)==min(abs(2020-f_df$index)))]
+  print(paste('Predicted future value at 2020: ',app_2020))
+  app_2030 <- f_df$value[which(abs(2030-f_df$index)==min(abs(2030-f_df$index)))]
+  print(paste('Predicted future value at 2030: ',app_2030))
+}
+```
+
+```{r}
+TRSW_prediction("Bhutan")
+```
+
+```{r}
+# convert matrix to dataframe
+df_comp2 <- as.data.frame(temp_matrix2)
+colnames(df_comp2) <- c("Area", "Y2020","Y2025", "Y2030")
+df_comp2$Y2020 <- as.numeric(as.character(df_comp2$Y2020))
+df_comp2$Y2025 <- as.numeric(as.character(df_comp2$Y2025))
+df_comp2$Y2030 <- as.numeric(as.character(df_comp2$Y2030))
+
+write.csv(df_comp2,'predicted_TRSW_v2.csv')
+
+```
+
+
+
+
+
+
+

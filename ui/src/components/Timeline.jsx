@@ -1,6 +1,5 @@
 import React from "react";
 import withSizes from "react-sizes";
-
 import Slider from "rc-slider";
 import Draggable from "react-draggable";
 import "rc-slider/assets/index.css";

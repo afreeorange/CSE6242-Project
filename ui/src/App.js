@@ -5,6 +5,7 @@ import Timeline from "./components/Timeline";
 import Header from "./components/Header";
 import ProjectionSwitcher from "./components/ProjectionSwitcher";
 import Links from "./components/Links";
+import Parameters from "./components/Parameters";
 
 import {
   DEFAULT_PROJECTION,
@@ -15,12 +16,16 @@ import {
 
 import service from "./service";
 
-const prepareTimelineMarks = data => {
+const getYear = () => {
   const d = new Date();
-  const currentYear = d.getFullYear();
-  const dataWidth = Object.keys(data).length;
+  return d.getFullYear();
+};
 
+const prepareTimelineMarks = data => {
+  const currentYear = getYear();
+  const dataWidth = Object.keys(data).length;
   const ret = {};
+
   Object.keys(data).map(
     (year, i) =>
       (ret[Math.round((SLIDER_WIDTH_IN_PX / dataWidth) * i)] = {
@@ -41,6 +46,7 @@ const App = () => {
   const [year, setYear] = useState(DEFAULT_YEAR);
   const [timelineMarks, setTimelineMarks] = useState(null);
   const [projection, setProjection] = useState(DEFAULT_PROJECTION);
+  const [paramPanelIsOpen, setParamPanelVisiblity] = useState(false);
 
   const fetchData = async () => {
     const data = await service.getWSIData();
@@ -48,15 +54,15 @@ const App = () => {
     setTimelineMarks(prepareTimelineMarks(data));
   };
 
-  const playOurDoom = (i) => {
-    console.log('PLAY', i)
-    setTimeout(function () {
-        // Do Something Here
-        // Then recall the parent function to
-        // create a recursive loop.
-        playOurDoom();
-    }, 1000);
-  };
+  // const playOurDoom = (i) => {
+  //   console.log('PLAY', i)
+  //   setTimeout(function () {
+  //       // Do Something Here
+  //       // Then recall the parent function to
+  //       // create a recursive loop.
+  //       playOurDoom();
+  //   }, 1000);
+  // };
 
   const handleProjectionChange = e => setProjection(e.target.value);
 
@@ -71,7 +77,13 @@ const App = () => {
       return;
     }
 
-    setYear(timelineMarks[timelineIndex]["year"]);
+    const selectedYear = timelineMarks[timelineIndex]["year"];
+
+    setYear(selectedYear);
+
+    if (selectedYear > getYear()) {
+      console.log(">>>", selectedYear);
+    }
   };
 
   useEffect(() => {
@@ -90,9 +102,10 @@ const App = () => {
         onAfterChange={handleYearChange}
       />
       <ProjectionSwitcher
-          projections={VALID_PROJECTIONS}
-          changeHandler={handleProjectionChange}
-        />
+        projections={VALID_PROJECTIONS}
+        changeHandler={handleProjectionChange}
+      />
+      <Parameters />
     </React.Fragment>
   ) : (
     <h1>Loading...</h1>

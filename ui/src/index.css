@@ -144,19 +144,21 @@ path {
    padding-top: .25em;
 }
 header {
-   padding: .5em;
+   padding: 1em 2em;
    overflow: hidden;
    position: fixed;
-   width: 98%;
+   width: 94%;
    margin: 0 auto;
 }
 header h1 {
    color: white;
    font-weight: bold;
-   font-size: 3em;
+   font-size: 2.125em;
    float: left;
    color: #369;
+   text-shadow: 0px 0px 10px #fff;
 }
+
 nav {
    list-style-type: none;
    float: right;
@@ -171,7 +173,7 @@ nav ul li a {
    text-decoration: none;
    font-size: 2em;
    text-transform: lowercase;
-   /*text-shadow: 0px 0px 5px #999;*/
+   text-shadow: 0px 0px 10px #fff;
 }
 nav ul li a:hover {
    color: #f30;
@@ -182,4 +184,41 @@ nav ul li a:hover {
    position: fixed;
    bottom: 1em;
    right: 1em;
+}
+
+.parameters {
+  position: absolute;
+  top: 6em;
+  left: 2em;
+  cursor: pointer;
+  background: #fff;
+  border: 1px dotted #eee;
+  border-radius: 10px;
+  opacity: 0.75;
+  width: 150px;
+  margin: 0 auto;
+  padding: 1em;
+  box-shadow: 0 0 72px -41px rgba(51,51,51,1);
+}
+.parameters h2 {
+  font-size: 1.125em;
+  border-bottom: 4px double #ccc;
+  padding-bottom: .5em;
+  margin-bottom: .5em;
+  font-weight: bold;
+}
+.parameters h3 {
+  font-size: 1em;
+}
+.parameters section {
+  padding-bottom: 1em;
+  padding-top: .5em;
+}
+.parameters section:last-child {
+  border-top: 1px solid #ccc;
+  padding-top: 1em;
+  padding-bottom: 0;
+}
+.parameters .parameter-slider {
+  margin: 1em 0;
 }

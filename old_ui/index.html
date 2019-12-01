@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="world_map_template.css" media="screen" />
+
+<script type="text/javascript" src="lib/d3.v5.min.js"></script>
+<script type="text/javascript" src="lib/topojson.v2.min.js"></script>
+<script type="text/javascript" src="lib/d3-tip.min.js"></script>
+<script type="text/javascript" src="lib/d3-geo-projection.v2.min.js"></script>
+<script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="lib/axios.min.js"></script>
+<script src="GraphicClass.js"></script>
+<script src="TimelineClass.js"></script>
+<script src="WorldMapClass.js"></script>
+
+<div id="titlebar"></div>
+<div id="footer">
+  <div id="water-org">
+    Give the gift of water.
+    <p>
+      <a href="https://water.org/donate/" target="_blank">Donate</a>
+    </p>
+  </div>
+  <div id="aquastat">
+    Data source: <a href="http://www.fao.org/nr/water/aquastat/data/query/" target="_blank">AQUASTAT</a>
+    <div id="disclaimer">
+        Created for GaTech CSE6242.  This website is not associated with water.org.
+    </div>
+  </div>
+</div>
+<div id="editor" class="transition">
+  <form>
+    <label>
+      GDP Growth Rate Adjustment (%)<br>
+      -5<input type="range" min="-5" max="5" value="0" class="slider" id="gdp">5
+    </label>
+    <label>
+      Population Growth Rate Adjustment (%)<br>
+      -5<input type="range" min="-5" max="5" value="0" class="slider" id="pop">5
+    </label>
+  </form>
+</div>
+<div id="map"></div>
+<div id="wsi">World Water Stress Index</div>
+
+
+<script src="world_map_template.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153577328-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-153577328-1');
+</script>
