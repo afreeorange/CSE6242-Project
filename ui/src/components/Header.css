@@ -1,37 +1,36 @@
 header {
-   padding: 1em 2em;
-   overflow: hidden;
-   position: fixed;
-   width: 94%;
-   margin: 0 auto;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 1em 2em;
+  position: fixed;
+  width: 94%;
 }
-header h1 {
-   color: white;
-   font-weight: bold;
-   font-size: 2.125em;
-   float: left;
-   color: #369;
-   text-shadow: 0px 0px 10px #fff;
+header > h1 {
+  color: #369;
+  float: left;
+  font-size: 2.125em;
+  font-weight: bold;
+  text-shadow: 0 0 10px #fff;
 }
 nav {
-   list-style-type: none;
-   float: right;
-   padding-top: .25em;
+  float: right;
+  list-style-type: none;
+  padding-top: 0.25em;
 }
-nav ul li {
-   display: inline-block;
-   padding: 0 0 0 2em;
+nav > ul > li {
+  display: inline-block;
+  padding: 0 0 0 2em;
 }
-nav ul li a {
-   color: #84add6;
-   text-decoration: none;
-   font-size: 2em;
-   text-transform: lowercase;
-   text-shadow: 0px 0px 10px #fff;
+nav > ul > li > a {
+  color: #84add6;
+  font-size: 2em;
+  text-decoration: none;
+  text-shadow: 0 0 10px #fff;
+  text-transform: lowercase;
 }
-nav ul li a:hover {
-   color: #369;
+nav > ul > li > a:hover {
+  color: #369;
 }
 .nav-icon {
-  font-size: .8em;
+  font-size: 0.8em;
 }

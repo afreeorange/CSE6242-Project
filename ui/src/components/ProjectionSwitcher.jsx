@@ -9,7 +9,7 @@ const ProjectionSwitcher = ({ projections, changeHandler }) => (
       <FiGlobe /> Projection
     </span>
     <select onChange={changeHandler}>
-      {Object.keys(projections).map((i, projectionName) => (
+      {Object.keys(projections).map((projectionName, i) => (
         <option
           key={`projection-switcher-option-${i}`}
           value={projections[projectionName]}

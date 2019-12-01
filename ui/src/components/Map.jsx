@@ -54,7 +54,7 @@ const Map = ({ projection, WSIDataForYear }) => (
                     <br />
                     <small>${
                       dataAvailable
-                        ? `<strong>${
+                        ? `Stress Index <strong>${
                             WSIDataForYear[geo.properties.name]
                           }</strong>`
                         : "WSI Data Unavilable"

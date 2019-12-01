@@ -7,18 +7,22 @@
   margin-top: 3.25em;
   padding-top: 1em;
 }
+
 .legend-text {
   font-weight: bold;
   grid-area: "legend-text";
   padding-top: 0.125em;
 }
+
 .legend-items {
   grid-area: "legend-items";
 }
+
 .legend-item {
   display: inline-block;
   margin-right: 3.25em;
 }
+
 .legend-color {
   border-radius: 10px;
   display: inline-block;
@@ -26,6 +30,7 @@
   margin-right: 0.5em;
   width: 15px;
 }
+
 .legend-label {
   display: inline-block;
   padding-top: 0.25em;
