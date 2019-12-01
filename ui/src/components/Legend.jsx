@@ -4,7 +4,8 @@ import { colorScale, COLOR_SCALE_TICKS } from "../constants";
 
 const Legend = () => (
   <div className="legend">
-    <span>WSI</span>
+    <div className="legend-text">Water Stress Index</div>
+    <div className="legend-items">
     {COLOR_SCALE_TICKS.map(tick => (
       <div className="legend-item">
         <div
@@ -14,6 +15,7 @@ const Legend = () => (
         <div className="legend-label">{tick}</div>
       </div>
     ))}
+    </div>
   </div>
 );
 

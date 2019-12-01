@@ -7,7 +7,7 @@ import "rc-slider/assets/index.css";
 
 import Legend from './Legend';
 
-function Timeline({ marks, onAfterChange, width, height }) {
+function Timeline({ marks, onAfterChange, defaultYearIndex, width, height }) {
   /**
    * This is lazy, will throw a warning but It Works(tm),
    * it's crunch time, and I don't care <3
@@ -19,7 +19,7 @@ function Timeline({ marks, onAfterChange, width, height }) {
   return (
     <Draggable
       handle=".timeline"
-      defaultPosition={{ x: 0, y: 0.83 * height - height }}
+      defaultPosition={{ x: 0, y: 0.7 * height - height }}
       scale={1}
       axis="y"
     >
@@ -31,6 +31,7 @@ function Timeline({ marks, onAfterChange, width, height }) {
           step={parseInt(step)}
           onAfterChange={onAfterChange}
           included={false}
+          defaultValue={defaultYearIndex}
         />
         <Legend />
       </div>

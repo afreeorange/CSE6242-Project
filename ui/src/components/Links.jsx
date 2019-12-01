@@ -46,6 +46,7 @@ const Links = () => {
   return (
     <React.Fragment>
       <nav>
+        <ul>
         <li>
           <a href="#about" onClick={handleAbout}>
             About
@@ -56,6 +57,7 @@ const Links = () => {
             Donate
           </a>
         </li>
+        </ul>
       </nav>
 
       {aboutIsOpen && <About isOpen={aboutIsOpen} closeHandler={handleAbout} />}

@@ -32,6 +32,10 @@ const prepareTimelineMarks = data => {
   return ret;
 };
 
+const sleep = milliseconds => {
+  return new Promise(resolve => setInterval(resolve, milliseconds));
+};
+
 const App = () => {
   const [data, setData] = useState(null);
   const [year, setYear] = useState(DEFAULT_YEAR);
@@ -42,6 +46,16 @@ const App = () => {
     const data = await service.getWSIData();
     setData(data);
     setTimelineMarks(prepareTimelineMarks(data));
+  };
+
+  const playOurDoom = (i) => {
+    console.log('PLAY', i)
+    setTimeout(function () {
+        // Do Something Here
+        // Then recall the parent function to
+        // create a recursive loop.
+        playOurDoom();
+    }, 1000);
   };
 
   const handleProjectionChange = e => setProjection(e.target.value);
@@ -67,11 +81,18 @@ const App = () => {
   return data && timelineMarks ? (
     <React.Fragment>
       <Header>
-        <ProjectionSwitcher projections={VALID_PROJECTIONS} changeHandler={handleProjectionChange} />
         <Links />
       </Header>
       <Map projection={projection} WSIDataForYear={data[year]} />
-      <Timeline marks={timelineMarks} onAfterChange={handleYearChange} />
+      <Timeline
+        marks={timelineMarks}
+        defaultYearIndex={timelineMarks[year]}
+        onAfterChange={handleYearChange}
+      />
+      <ProjectionSwitcher
+          projections={VALID_PROJECTIONS}
+          changeHandler={handleProjectionChange}
+        />
     </React.Fragment>
   ) : (
     <h1>Loading...</h1>

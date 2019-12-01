@@ -24,6 +24,9 @@ const handleMouseEnter = (e, text) => {
 };
 const handleMouseExit = e => tooltipper.hide();
 
+/**
+ * Behold the Map component
+ */
 const Map = ({ projection, WSIDataForYear }) => {
   return (
     <div>
@@ -52,7 +55,7 @@ const Map = ({ projection, WSIDataForYear }) => {
                     <br />
                     <small>${
                       dataAvailable
-                        ? WSIDataForYear[geo.properties.name]
+                        ? `<strong>${WSIDataForYear[geo.properties.name]}</strong>`
                         : "WSI Data Unavilable"
                     }</small>
                   `,

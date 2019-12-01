@@ -1,169 +1,185 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font: inherit;
+   vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+   display: block;
 }
 body {
-  line-height: 1;
+   line-height: 1;
 }
 ol, ul {
-  list-style: none;
+   list-style: none;
 }
 blockquote, q {
-  quotes: none;
+   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
+blockquote:before, blockquote:after, q:before, q:after {
+   content: '';
+   content: none;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+   border-collapse: collapse;
+   border-spacing: 0;
 }
-
 body {
-  margin: 0;
-  font-family: "Roboto Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+   margin: 0;
+   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
 .wsdm-tooltip {
-  display: none;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 3px;
-  pointer-events: none;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  margin-top: -10px;
-  text-align: left;
+   display: none;
+   padding: 1rem;
+   background: #333!important;
+   color: white;
+   border-radius: 10px;
+   pointer-events: none;
+   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+   z-index: 1000;
+   margin-top: -10px;
+   text-align: left;
+   font-size: 1.5em;
 }
-
 .wsdm-tooltip:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 100%;
-  left: 50%;
-  margin-left: -0.5rem;
-  border-left: 0.5rem solid transparent;
-  border-right: 0.5rem solid transparent;
-  border-top: 0.5rem solid rgba(255, 255, 255, 0.95);
+   content: "";
+   position: absolute;
+   width: 0;
+   height: 0;
+   top: 100%;
+   left: 50%;
+   margin-left: -0.5rem;
+   border-left: 0.5rem solid transparent;
+   border-right: 0.5rem solid transparent;
+   border-top: 0.5rem solid #333;
+   border-radius: 20px;
 }
-
+.wsdm-tooltip > strong {
+   display: inline-block;
+   font-weight: bold;
+   margin-bottom: .25em;
+}
+.wsdm-tooltip > small > strong {
+   font-size: .85em;
+   font-weight: bold;
+}
 .timeline {
-  cursor: pointer;
-  background: #fff;
-  border: 1px dotted #eee;
-  border-radius: 10px;
-  opacity: 0.9;
-  width: 700px;
-  margin: 0 auto;
-  padding: 1em 3em 1em 3em;
-  box-shadow: 0px 0px 72px -41px rgba(51,51,51,1);
+   cursor: pointer;
+   background: #fff;
+   border: 1px dotted #eee;
+   border-radius: 10px;
+   opacity: 0.9;
+   width: 700px;
+   margin: 0 auto;
+   padding: 1em 3em 1em 3em;
+   box-shadow: 0px 0px 72px -41px rgba(51,51,51,1);
 }
-
 path {
-  transition: fill 1s ease;
+   transition: fill 1s ease;
 }
-
 .rc-slider-mark-text {
-  font-weight: bold;
-  font-size: 1.25em;
+   font-weight: bold;
+   font-size: 1.25em;
 }
-
 .rc-slider-mark-text strong {
-  color: #000;
+   color: #000;
 }
-
 .modal {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  width: 50%;
-  border-radius: 10px;
+   background-color: #fefefe;
+   margin: auto;
+   padding: 20px;
+   width: 50%;
+   border-radius: 10px;
 }
-
 .modal-overlay {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  padding-top: 10%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #369;
-  opacity: 0.75;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   padding-top: 10%;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background: #000;
+   opacity: 0.75;
 }
-
 .legend {
-  margin-top: 2em;
-  text-align: center;
-  font-size: .75em;
-  border-top: 1px dotted #ccc;
-  padding-top: 1em;
-  margin-top: 3.25em;
-  position: relative;
+   font-size: .75em;
+   border-top: 1px dotted #ccc;
+   padding-top: 1em;
+   margin-top: 3.25em;
+   display: grid;
+   grid-template-areas: "legend-text legend-items";
+   grid-template-rows: 10% auto;
 }
-.legend span {
-  display: inline-block;
-  position: absolute;
-  font-weight: bold;
-  left: 0;
-  top: 1.25em;
+.legend-text {
+   font-weight: bold;
+   grid-area: "legend-text";
+   padding-top: .125em;
+}
+.legend-items {
+   grid-area: "legend-items";
 }
 .legend-item {
-  display: inline-block;
-  margin-right: 3.25em;
+   display: inline-block;
+   margin-right: 3.25em;
 }
 .legend-color {
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-  margin-right: .5em;
-  border-radius: 10px;
-  border: 1px solid #999;
+   width: 15px;
+   height: 15px;
+   display: inline-block;
+   margin-right: .5em;
+   border-radius: 10px;
 }
 .legend-label {
-  display: inline-block;
-  position: fixed;
-  padding-top: .25em;
+   display: inline-block;
+   position: fixed;
+   padding-top: .25em;
+}
+header {
+   padding: .5em;
+   overflow: hidden;
+   position: fixed;
+   width: 98%;
+   margin: 0 auto;
+}
+header h1 {
+   color: white;
+   font-weight: bold;
+   font-size: 3em;
+   float: left;
+   color: #369;
+}
+nav {
+   list-style-type: none;
+   float: right;
+   padding-top: .25em;
+}
+nav ul li {
+   display: inline-block;
+   padding: 0 0 0 2em;
+}
+nav ul li a {
+   color: #666;
+   text-decoration: none;
+   font-size: 2em;
+   text-transform: lowercase;
+   /*text-shadow: 0px 0px 5px #999;*/
+}
+nav ul li a:hover {
+   color: #f30;
+}
+.projection-switcher {
+   background: white;
+   padding: .25em .5em;
+   position: fixed;
+   bottom: 1em;
+   right: 1em;
 }
