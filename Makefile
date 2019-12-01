@@ -15,6 +15,7 @@ install_deps:
 clean:
 	find . -type f -iname "*.pyc" -or -type d -name "__pycache__" -delete;
 	rm -rf ./dist \
+		./ui/build \
 		./api/dist \
 		./api/wsi_api/app/{ui,db}
 
@@ -24,8 +25,11 @@ build: clean install_deps
 	@# Prep the static asset folders in package
 	mkdir -p ./api/wsi_api/app/{ui,db}
 
+	@# Build the UI
+	cd ui/ && yarn && yarn build
+
 	@# Copy over the built UI
-	cp -rv ui/* ./api/wsi_api/app/ui/
+	cp -rv ui/build/* ./api/wsi_api/app/ui/
 
 	@# Copy over the database
 	cp ./data/wsi_data.db ./api/wsi_api/app/db/
