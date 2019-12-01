@@ -1,4 +1,4 @@
-from flask import jsonify, send_file
+from flask import jsonify, send_file, send_from_directory
 from webargs import fields
 from webargs.flaskparser import use_args
 
@@ -14,9 +14,14 @@ def index():
     return send_file("app/ui/index.html")
 
 
-@wsi_api_blueprint.route('/<path:url>')
-def sample_endpoint(url):
-    return send_file(url)
+@wsi_api_blueprint.route('/static/js/<path:url>')
+def static_js_assets(url):
+    return send_from_directory("app/ui/static/js", url)
+
+
+@wsi_api_blueprint.route('/static/css/<path:url>')
+def static_css_assets(url):
+    return send_from_directory("app/ui/static/css", url)
 
 
 # WSI API Endpoints
@@ -77,177 +82,177 @@ def predict_endpoint(args):
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop_2 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == -2 and pop== 0:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop0 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == -2 and pop== 2:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp_2_Pop2 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == 0 and pop== -2:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop_2 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == 0 and pop== 0:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop0 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == 0 and pop== 2:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp0_Pop2 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == 2 and pop== -2:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop_2 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == 2 and pop== 0:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop0 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     elif gdp == 2 and pop== 2:
         if "year" in args.keys() and args["year"] != "":
             p_year = int(args["year"])
             if p_year == 2020:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2020""")
             elif p_year == 2025:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2025""")
             elif p_year == 2030:
-                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast 
-                                JOIN country ON country.AreaId = deltaforecast.AreaId 
+                cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast
+                                JOIN country ON country.AreaId = deltaforecast.AreaId
                                 WHERE deltaforecast.year = 2030""")
         else:
             isMultipleYears = True
-            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast 
+            cur.execute("""SELECT deltaforecast.year, country.Name, deltaforecast.Gdp2_Pop2 from deltaforecast
                                 JOIN country ON country.AreaId = deltaforecast.AreaId""")
     # gdp = 2 & population_delta = 2
     rows = cur.fetchall()
 
     data = prepare_predict_response(rows, isMultipleYears, p_year)
-    
+
     # print(rows)
     return jsonify(data)
