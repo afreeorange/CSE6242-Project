@@ -12,6 +12,9 @@ header > h1 {
   font-weight: bold;
   text-shadow: 0 0 10px #fff;
 }
+.mild-header {
+  color: #84add6;
+}
 nav {
   float: right;
   list-style-type: none;
@@ -23,7 +26,7 @@ nav > ul > li {
 }
 nav > ul > li > a {
   color: #84add6;
-  font-size: 2em;
+  font-size: 1.85em;
   text-decoration: none;
   text-shadow: 0 0 10px #fff;
   text-transform: lowercase;

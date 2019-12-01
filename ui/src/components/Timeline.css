@@ -6,8 +6,19 @@
   cursor: pointer;
   margin: 0 auto;
   opacity: 0.9;
-  padding: 1em 3em 1em 3em;
+  padding: 1em 2em 1em 1em;
   width: 700px;
+}
+.timeline-slider-wrapper {
+  display: grid;
+  grid-template-columns: 4em auto;
+}
+.timeline-play {
+  color: #ccc;
+  font-size: 2em;
+}
+.timeline-play:hover {
+  color: #369;
 }
 
 .timeline-is-draggable {
@@ -28,4 +39,7 @@
 
 .rc-slider-mark-text strong {
   color: #000;
+}
+.rc-slider-handle {
+  background: #369;
 }

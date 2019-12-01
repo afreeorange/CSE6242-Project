@@ -41,14 +41,12 @@ const prepareTimelineMarks = data => {
   return ret;
 };
 
-const sleep = milliseconds => {
-  return new Promise(resolve => setInterval(resolve, milliseconds));
-};
-
 const App = () => {
   const [historicalData, setHistoricalData] = useState(null);
   const [year, setYear] = useState(DEFAULT_YEAR);
   const [timelineMarks, setTimelineMarks] = useState(null);
+  const [currentTimelineMark, setCurrentTimelineMark] = useState(0);
+  const [timelineDisabled, setTimelineDisabled] = useState(false);
   const [projection, setProjection] = useState(DEFAULT_PROJECTION);
   const [forecastData, setForecastData] = useState(null);
   const [gdp, setGDP] = useState(0);
@@ -68,15 +66,24 @@ const App = () => {
     setForecastData(_forecastData);
   };
 
-  // const playOurDoom = (i) => {
-  //   console.log('PLAY', i)
-  //   setTimeout(function () {
-  //       // Do Something Here
-  //       // Then recall the parent function to
-  //       // create a recursive loop.
-  //       playOurDoom();
-  //   }, 1000);
-  // };
+  const playOurDoom = (i) => {
+    let year = Object.keys(historicalData)[i];
+    let timelineMark = Object.keys(timelineMarks).filter(m => timelineMarks[m].year === year)[0];
+
+    setTimelineDisabled(true);
+    setYear(year);
+    setCurrentTimelineMark(parseInt(timelineMark));
+
+    if ((i + 1) < Object.keys(historicalData).length) {
+      setTimeout(function () {
+          playOurDoom(i + 1);
+      }, 1000);
+    } else {
+      setYear(Object.keys(historicalData)[0]);
+      setCurrentTimelineMark(0);
+      setTimelineDisabled(false);
+    }
+  };
 
   const handleParameterChange = (label, value) => {
     label === "gdp" && setGDP(value);
@@ -98,6 +105,9 @@ const App = () => {
     }
 
     const selectedYear = timelineMarks[timelineIndex]["year"];
+    const timelineMark = Object.keys(timelineMarks).filter(m => timelineMarks[m].year === selectedYear)[0];
+
+    setCurrentTimelineMark(parseInt(timelineMark));
     setYear(selectedYear);
   };
 
@@ -111,7 +121,7 @@ const App = () => {
 
   return historicalData && timelineMarks ? (
     <React.Fragment>
-      <Header>
+      <Header replayIsHappening={timelineDisabled} year={year}>
         <Links />
       </Header>
       <Map
@@ -124,14 +134,16 @@ const App = () => {
       />
       <Timeline
         marks={timelineMarks}
-        defaultYearIndex={timelineMarks[year]}
         onAfterChange={handleYearChange}
+        yearIndex={currentTimelineMark}
+        disabled={timelineDisabled}
+        yearPlayerCallback={() => playOurDoom(0)}
       />
       <ProjectionSwitcher
         projections={VALID_PROJECTIONS}
         changeHandler={handleProjectionChange}
       />
-      {year > getYear() && <Parameters changeHandler={handleParameterChange} />}
+      {year > getYear() && !timelineDisabled && <Parameters changeHandler={handleParameterChange} />}
     </React.Fragment>
   ) : (
     <h1>Loading...</h1>

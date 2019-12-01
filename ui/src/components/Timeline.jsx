@@ -1,21 +1,15 @@
 import React from "react";
 import Draggable from "react-draggable";
-import { FiMove } from "react-icons/fi";
+import { FiMove, FiPlayCircle } from "react-icons/fi";
 import Slider from "rc-slider";
 import useViewportSizes from "use-viewport-sizes";
 import "rc-slider/assets/index.css";
 
 import Legend from "./Legend";
 
-import './Timeline.css';
+import "./Timeline.css";
 
-const Timeline = ({
-  marks,
-  onAfterChange,
-  defaultYearIndex,
-  width,
-  height,
-}) => {
+const Timeline = ({ marks, onAfterChange, yearIndex, yearPlayerCallback }) => {
   const [viewportWidth, viewportHeight] = useViewportSizes();
 
   /**
@@ -34,15 +28,22 @@ const Timeline = ({
       axis="y"
     >
       <div className="timeline">
-        <Slider
-          min={0}
-          max={parseInt(max)}
-          marks={marks}
-          step={parseInt(step)}
-          onAfterChange={onAfterChange}
-          included={false}
-          defaultValue={defaultYearIndex}
-        />
+        <div className="timeline-slider-wrapper">
+          <FiPlayCircle
+            className="timeline-play"
+            onClick={yearPlayerCallback}
+          />
+          <Slider
+            className="timeline-slider"
+            min={0}
+            max={parseInt(max)}
+            marks={marks}
+            step={parseInt(step)}
+            onAfterChange={onAfterChange}
+            included={false}
+            value={yearIndex}
+          />
+        </div>
         <Legend />
         <FiMove className="timeline-is-draggable" />
       </div>

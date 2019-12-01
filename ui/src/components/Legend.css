@@ -4,11 +4,13 @@
   font-size: 0.75em;
   grid-template-areas: "legend-text legend-items";
   grid-template-rows: 10% auto;
-  margin-top: 3.25em;
+  margin-top: 1.5em;
   padding-top: 1em;
+  text-align: center;
 }
 
 .legend-text {
+  font-size: 1.125em;
   font-weight: bold;
   grid-area: "legend-text";
   padding-top: 0.125em;

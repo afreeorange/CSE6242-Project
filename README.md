@@ -124,7 +124,7 @@ make bump
 
 ### Web Interface
 
-Bootstrapped with the awesome [Create React App](https://github.com/facebook/create-react-app). Do this _after_ you have the API running in a separate session. It will expect the API to be listening on **port 8000** (you can change this in `ui/package.json`.)
+Bootstrapped with the awesome [Create React App](https://github.com/facebook/create-react-app). Do this _after_ you have the API running in a separate session. It will expect the API to be listening on port 8000 (you can change this in `ui/package.json`) but will run on **port 3000**
 
 ```bash
 cd ui/
@@ -132,7 +132,7 @@ cd ui/
 # Install dependencies
 yarn
 
-# Start the development server
+# Start the development server on Go to http://127.0.0.1:3000
 yarn start
 ```
 
