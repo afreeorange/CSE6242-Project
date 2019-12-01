@@ -26,7 +26,10 @@ build: clean install_deps
 	mkdir -p ./api/wsi_api/app/{ui,db}
 
 	@# Build the UI
-	cd ui/ && yarn && yarn build
+	export CI=false && \
+		cd ui/ && \
+		yarn && \
+		yarn build
 
 	@# Copy over the built UI
 	cp -rv ui/build/* ./api/wsi_api/app/ui/
