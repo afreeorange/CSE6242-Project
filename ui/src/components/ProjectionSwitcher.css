@@ -1,0 +1,22 @@
+.projection-switcher {
+  background: white;
+  padding: .25em .5em;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}
+.projection-switcher select {
+  cursor: pointer;
+  font-size: 1.25em;
+  background: #fff;
+  border: 1px dotted #999;
+}
+.projection-switcher span {
+  font-weight: bold;
+  font-size: 1.25em;
+  margin-right: .5em;
+}
+.projection-switcher span svg {
+  color: #999;
+  margin-right: .25em;
+}

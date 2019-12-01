@@ -1,0 +1,33 @@
+.legend {
+  border-top: 1px dotted #ccc;
+  display: grid;
+  font-size: 0.75em;
+  grid-template-areas: "legend-text legend-items";
+  grid-template-rows: 10% auto;
+  margin-top: 3.25em;
+  padding-top: 1em;
+}
+.legend-text {
+  font-weight: bold;
+  grid-area: "legend-text";
+  padding-top: 0.125em;
+}
+.legend-items {
+  grid-area: "legend-items";
+}
+.legend-item {
+  display: inline-block;
+  margin-right: 3.25em;
+}
+.legend-color {
+  border-radius: 10px;
+  display: inline-block;
+  height: 15px;
+  margin-right: 0.5em;
+  width: 15px;
+}
+.legend-label {
+  display: inline-block;
+  padding-top: 0.25em;
+  position: fixed;
+}

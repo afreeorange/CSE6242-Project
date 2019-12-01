@@ -1,3 +1,7 @@
+/**
+ * This is the Rug that ties everything together <3
+ */
+
 import React, { useState, useEffect } from "react";
 
 import Map from "./components/Map";
@@ -42,16 +46,26 @@ const sleep = milliseconds => {
 };
 
 const App = () => {
-  const [data, setData] = useState(null);
+  const [historicalData, setHistoricalData] = useState(null);
   const [year, setYear] = useState(DEFAULT_YEAR);
   const [timelineMarks, setTimelineMarks] = useState(null);
   const [projection, setProjection] = useState(DEFAULT_PROJECTION);
-  const [paramPanelIsOpen, setParamPanelVisiblity] = useState(false);
+  const [forecastData, setForecastData] = useState(null);
+  const [gdp, setGDP] = useState(0);
+  const [population, setPopulation] = useState(0);
 
-  const fetchData = async () => {
-    const data = await service.getWSIData();
-    setData(data);
-    setTimelineMarks(prepareTimelineMarks(data));
+  const fetchHistoricalData = async () => {
+    const _historicalData = await service.getHistoricalData();
+    setHistoricalData(_historicalData);
+    setTimelineMarks(prepareTimelineMarks(_historicalData));
+  };
+
+  const fetchForecastData = async (gdpDelta, populationDelta) => {
+    const _forecastData = await service.getForecastData(
+      gdpDelta,
+      populationDelta,
+    );
+    setForecastData(_forecastData);
   };
 
   // const playOurDoom = (i) => {
@@ -63,6 +77,12 @@ const App = () => {
   //       playOurDoom();
   //   }, 1000);
   // };
+
+  const handleParameterChange = (label, value) => {
+    label === "gdp" && setGDP(value);
+    label === "population" && setPopulation(value);
+    return true;
+  };
 
   const handleProjectionChange = e => setProjection(e.target.value);
 
@@ -78,24 +98,30 @@ const App = () => {
     }
 
     const selectedYear = timelineMarks[timelineIndex]["year"];
-
     setYear(selectedYear);
-
-    if (selectedYear > getYear()) {
-      console.log(">>>", selectedYear);
-    }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchHistoricalData();
   }, []);
 
-  return data && timelineMarks ? (
+  useEffect(() => {
+    fetchForecastData(gdp, population);
+  }, [gdp, population]);
+
+  return historicalData && timelineMarks ? (
     <React.Fragment>
       <Header>
         <Links />
       </Header>
-      <Map projection={projection} WSIDataForYear={data[year]} />
+      <Map
+        projection={projection}
+        WSIDataForYear={
+          gdp !== 0 && population !== 0 && year > getYear()
+            ? forecastData[year]
+            : historicalData[year]
+        }
+      />
       <Timeline
         marks={timelineMarks}
         defaultYearIndex={timelineMarks[year]}
@@ -105,7 +131,7 @@ const App = () => {
         projections={VALID_PROJECTIONS}
         changeHandler={handleProjectionChange}
       />
-      <Parameters />
+      {year > getYear() && <Parameters changeHandler={handleParameterChange} />}
     </React.Fragment>
   ) : (
     <h1>Loading...</h1>

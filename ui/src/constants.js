@@ -1,16 +1,17 @@
 import { scaleLinear } from "d3-scale";
 
 export const VALID_PROJECTIONS = {
-  "Equal Earth": "geoNaturalEarth2",
-  Albers: "geoAlbers",
-  "Azimuthal Equal Area": "geoAzimuthalEqualArea",
-  "Azimuthal Equidistant": "geoAzimuthalEquidistant",
-  Orthographic: "geoOrthographic",
+  Mercator: "geoMercator",
+  "Mercator - Transverse": "geoTransverseMercator",
   "Conic Conformal": "geoConicConformal",
   "Conic Equal Area": "geoConicEqualArea",
   "Conic Equidistant": "geoConicEquidistant",
-  Mercator: "geoMercator",
-  "Transverse Mercator": "geoTransverseMercator",
+
+  /** These require rotation which I don't plan on implementing now... */
+  // Albers: "geoAlbers",
+  // "Azimuthal Equal Area": "geoAzimuthalEqualArea",
+  // "Azimuthal Equidistant": "geoAzimuthalEquidistant",
+  // Orthographic: "geoOrthographic",
 };
 
 export const DEFAULT_PROJECTION = "geoMercator";

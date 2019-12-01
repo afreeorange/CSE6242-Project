@@ -1,9 +1,19 @@
 import axios from "axios";
 
 class WSIService {
-  getWSIData = () => axios.get(`/wsi`).then(r => r.data);
+  getGeography = () => axios.get("/countries-110m.json").then(r => r.data);
 
-  getGeography = () => axios.get('/countries-110m.json').then(r => r.data);
+  getHistoricalData = () => axios.get(`/wsi`).then(r => r.data);
+
+  getForecastData = (gdpDelta, populationDelta) =>
+    axios
+      .get(`/predict`, {
+        params: {
+          gdp_delta: gdpDelta,
+          population_delta: populationDelta,
+        },
+      })
+      .then(r => r.data);
 }
 
 /**

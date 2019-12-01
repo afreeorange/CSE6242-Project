@@ -1,12 +1,23 @@
 import React from "react";
-import withSizes from "react-sizes";
-import Slider from "rc-slider";
 import Draggable from "react-draggable";
+import { FiMove } from "react-icons/fi";
+import Slider from "rc-slider";
+import useViewportSizes from "use-viewport-sizes";
 import "rc-slider/assets/index.css";
 
-import Legend from './Legend';
+import Legend from "./Legend";
 
-function Timeline({ marks, onAfterChange, defaultYearIndex, width, height }) {
+import './Timeline.css';
+
+const Timeline = ({
+  marks,
+  onAfterChange,
+  defaultYearIndex,
+  width,
+  height,
+}) => {
+  const [viewportWidth, viewportHeight] = useViewportSizes();
+
   /**
    * This is lazy, will throw a warning but It Works(tm),
    * it's crunch time, and I don't care <3
@@ -18,7 +29,7 @@ function Timeline({ marks, onAfterChange, defaultYearIndex, width, height }) {
   return (
     <Draggable
       handle=".timeline"
-      defaultPosition={{ x: 0, y: 0.7 * height - height }}
+      positionOffset={{ x: 0, y: -0.7 * viewportWidth }}
       scale={1}
       axis="y"
     >
@@ -33,14 +44,10 @@ function Timeline({ marks, onAfterChange, defaultYearIndex, width, height }) {
           defaultValue={defaultYearIndex}
         />
         <Legend />
+        <FiMove className="timeline-is-draggable" />
       </div>
     </Draggable>
   );
-}
+};
 
-const mapSizesToProps = ({ width, height }) => ({
-  width: width,
-  height: height,
-});
-
-export default withSizes(mapSizesToProps)(Timeline);
+export default Timeline;

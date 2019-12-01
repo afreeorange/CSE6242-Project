@@ -1,50 +1,48 @@
 import React from "react";
-import withSizes from "react-sizes";
 import Slider from "rc-slider";
-import Draggable from "react-draggable";
+import { MdPeopleOutline } from "react-icons/md";
+import { AiOutlineDollar } from "react-icons/ai";
 import "rc-slider/assets/index.css";
 
-const Parameters = ({ width, height }) => (
+import './Parameters.css';
+
+// Same ranges for sliders so use just one map :)
+const marks = {
+  0: "-2",
+  20: "0",
+  40: "+2",
+};
+
+const Parameters = ({ changeHandler }) => (
   <div className="parameters">
     <h2>Adjust</h2>
     <section>
-      <h3>GDP Growth Rate</h3>
+      <h3><AiOutlineDollar />{' '}GDP Growth Rate</h3>
       <Slider
         min={0}
         max={40}
-        marks={{
-          0: "-2",
-          20: "0",
-          40: "+2",
-        }}
+        marks={marks}
         step={20}
         included={false}
         defaultValue={20}
+        onAfterChange={(e) => changeHandler("gdp", marks[e])}
         className="parameter-slider"
       />
     </section>
     <section>
-      <h3>Pop. Growth Rate</h3>
+      <h3><MdPeopleOutline />{' '}Pop. Growth Rate</h3>
       <Slider
         min={0}
         max={40}
-        marks={{
-          0: "-2",
-          20: "0",
-          40: "+2",
-        }}
+        marks={marks}
         step={20}
         included={false}
         defaultValue={20}
+        onAfterChange={(e) => changeHandler("population", marks[e])}
         className="parameter-slider"
       />
     </section>
   </div>
 );
 
-const mapSizesToProps = ({ width, height }) => ({
-  width: width,
-  height: height,
-});
-
-export default withSizes(mapSizesToProps)(Parameters);
+export default Parameters;

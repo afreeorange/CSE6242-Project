@@ -44,17 +44,17 @@ def prepare_response(rows):
     wsi2030Dict = {}
 
     for x in rows:
-        wsi1980Dict[x[0]] = x[1]
-        wsi1985Dict[x[0]] = x[2]
-        wsi1990Dict[x[0]] = x[3]
-        wsi1995Dict[x[0]] = x[4]
-        wsi2000Dict[x[0]] = x[5]
-        wsi2005Dict[x[0]] = x[6]
-        wsi2010Dict[x[0]] = x[7]
-        wsi2015Dict[x[0]] = x[8]
-        wsi2020Dict[x[0]] = x[9]
-        wsi2025Dict[x[0]] = x[10]
-        wsi2030Dict[x[0]] = x[11]
+        wsi1980Dict[x[0]] = round(x[1], 2)
+        wsi1985Dict[x[0]] = round(x[2], 2)
+        wsi1990Dict[x[0]] = round(x[3], 2)
+        wsi1995Dict[x[0]] = round(x[4], 2)
+        wsi2000Dict[x[0]] = round(x[5], 2)
+        wsi2005Dict[x[0]] = round(x[6], 2)
+        wsi2010Dict[x[0]] = round(x[7], 2)
+        wsi2015Dict[x[0]] = round(x[8], 2)
+        wsi2020Dict[x[0]] = round(x[9], 2)
+        wsi2025Dict[x[0]] = round(x[10], 2)
+        wsi2030Dict[x[0]] = round(x[11], 2)
 
     returnDict['1980'] = wsi1980Dict
     returnDict['1985'] = wsi1985Dict
@@ -82,7 +82,7 @@ def prepare_predict_response(rows, isMultipleYear, year):
         wsiDict = {}
         for x in rows:
             wsiDict[x[1]] = x[2]
-        
+
         returnDict[year] = wsiDict
 
         return returnDict
