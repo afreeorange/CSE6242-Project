@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Draggable from "react-draggable";
 import { FiMove, FiPlayCircle } from "react-icons/fi";
 import Slider from "rc-slider";
@@ -39,7 +39,7 @@ const Timeline = ({ marks, onAfterChange, yearIndex, yearPlayerCallback }) => {
             max={parseInt(max)}
             marks={marks}
             step={parseInt(step)}
-            onAfterChange={onAfterChange}
+            onChange={onAfterChange}
             included={false}
             value={yearIndex}
           />
